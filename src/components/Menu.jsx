@@ -115,11 +115,11 @@ const Menu = () => {
                         <p>Recipe for:</p>
                         <p id="title">{currentCocktail.name}</p>
                     </div>
-                </div>
 
-                <div className="details">
-                    <h2>{currentCocktail.title}</h2>
-                    <p>{currentCocktail.description}</p>
+                    <div className="details">
+                        <h2>{currentCocktail.title}</h2>
+                        <p>{currentCocktail.description}</p>
+                    </div>
                 </div>
             </div>
         </section>
