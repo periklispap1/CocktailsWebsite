@@ -1,9 +1,29 @@
-import React, {useContext, useRef, useState} from 'react'
+import React, {useRef, useState} from 'react'
 import {sliderLists} from "../../constants/index.js";
 import {useGSAP} from "@gsap/react";
 import gsap from "gsap";
 
 const Menu = () => {
+
+    useGSAP(() => {
+        const parallaxTimeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: '#menu',
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: true,
+            }
+        })
+
+        parallaxTimeline
+            .from('#m-left-leaf', {
+                x: -100, y: 100
+            }, 0)
+            .from('#m-right-leaf', {
+                x: 100, y: 100
+            }, 0)
+    },[])
+
 
     const contentRef = useRef();
 
@@ -21,19 +41,10 @@ const Menu = () => {
             yPercent: 0, opacity: 1, ease: 'power1.inOut'
         })
 
-
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: '#menu',
-                start: 'top top',
-                end: 'bottom top',
-                scrub: true,
-            }
-        })
-            .to('.m-right-leaf', { y: 200} ,0)
-            .to('.m-left-leaf', { y: -200} ,0)
-
     }, [currentIndex]);
+
+
+
 
     const totalCocktails = sliderLists.length;
 
@@ -65,12 +76,12 @@ const Menu = () => {
                 Cocktail Menu
             </h2>
 
-            <nav className="cocktail-tabs" aria-label="Cocktail Navigation">
+            <div className="cocktail-tabs" role="tablist" aria-label="Cocktail Navigation">
                 {sliderLists.map((cocktail, index) => {
                     const isActive = index === currentIndex;
 
                     return (
-                        <button key={cocktail.id} className={`
+                        <button key={cocktail.id} role="tab" aria-selected={isActive} className={`
                         ${isActive
                             ? 'text-white border-white'
                             : 'text-white/50 border-white/50'}
@@ -81,16 +92,16 @@ const Menu = () => {
                         </button>
                     )
                 })}
-            </nav>
+            </div>
 
             <div className="content">
                 <div className="arrows">
                     <button className="text-left" onClick={() => goToSlide(currentIndex - 1)}>
-                        <span>prevCocktail.name</span>
+                        <span>{prevCocktail.name}</span>
                         <img src="/images/right-arrow.png" alt="right-arrow" aria-hidden="true" />
                     </button>
                     <button className="text-left" onClick={() => goToSlide(currentIndex + 1)}>
-                        <span>nameCocktail.name</span>
+                        <span>{nextCocktail.name}</span>
                         <img src="/images/left-arrow.png" alt="left-arrow" aria-hidden="true" />
                     </button>
                 </div>
