@@ -2,7 +2,6 @@
 
 Responsive cocktail bar website built with React, Vite, Tailwind CSS, and GSAP. The site uses scroll-based animation, split text reveals, a video-scrubbed hero, parallax leaves, an animated cocktail menu, and a polished contact section.
 
-![Velvet Pour preview](public/readme/thumbnail.png)
 
 ## Features
 
